@@ -1,7 +1,7 @@
-Miscrosoft SQL Server Data Cleaning Project
+                                                    Miscrosoft SQL Server Data Cleaning Project
 
 
-This is a project that focuses on data cleaning using SQL. The following skills were used to accomplish the cleaning task:
+                        This is a project that focuses on data cleaning using SQL. The following skills were used to accomplish the cleaning task:
 
 SELECT: Used to select specific columns from a table.
 
@@ -33,4 +33,4 @@ ISNULL: Used to replace null values with a specified value.
 
 Partition by, OVER, and RownUMBER: Used for window functions and to partition the data into smaller groups.
 
-The goal of this project was to clean and transform data in order to make it more usable for analysis. The skills listed above were used to accomplish this task.
+                      The goal of this project was to clean and transform data in order to make it more usable for analysis. The skills listed above were used to accomplish this task.
