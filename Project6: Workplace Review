@@ -1,0 +1,520 @@
+-- Select all columns from the table [2020rws]
+SELECT *
+FROM dbo.[2020rws]
+
+---Changing column name 
+ALTER TABLE dbo.[2020rws]
+ALTER COLUMN BornYear INT;
+
+SELECT DISTINCT ResponseID
+FROM dbo.[2020rws];
+
+---Changing data types
+ALTER TABLE dbo.[2020rws]
+ALTER COLUMN ResponseID INT;
+
+---I have changed the names of all the necessary columns
+SELECT DISTINCT CommonForOtherWorkersForRwLast3Month
+FROM dbo.[2020rws];
+
+SELECT industry, industry1, Occupation, Occupation1
+FROM dbo.[2020rws]
+
+SELECT DISTINCT industry
+FROM dbo.[2020rws]
+SELECT DISTINCT industry1
+FROM dbo.[2020rws]
+
+---Deleting Unnecessary Columns
+ALTER TABLE dbo.[2020rws]
+DROP COLUMN Industry1
+
+ALTER TABLE dbo.[2020rws]
+DROP COLUMN Occupation
+
+---Changing values in the column 'industry'
+UPDATE [2020rws] SET industry = 'Financial'
+WHERE industry = 'Financial and Insurance Services'
+
+UPDATE [2020rws] SET industry = 'Utility Industry'
+WHERE industry = 'Electricity, Gas, Water and Waste Services'
+
+UPDATE [2020rws] SET industry = 'Recreational Services'
+WHERE industry = 'Arts and Recreation Services'
+
+UPDATE [2020rws] SET industry = 'Telecommunications'
+WHERE industry = 'Information Media and Telecommunications'
+
+UPDATE [2020rws] SET industry = 'Agriculture'
+WHERE industry = 'Agriculture, Forestry and Fishing'
+
+UPDATE [2020rws] SET industry = 'HealthCare'
+WHERE industry = 'Health Care and Social Assistance'
+
+UPDATE [2020rws] SET industry = 'RealEstate'
+WHERE industry = 'Rental, Hiring and Real Estate Services'
+
+UPDATE [2020rws] SET industry = 'Accomodation-Food'
+WHERE industry = 'Accommodation and Food Services'
+
+UPDATE [2020rws] SET industry = 'Transport'
+WHERE industry = 'Transport, Postal and Warehousing'
+
+UPDATE [2020rws] SET industry = 'Administrative'
+WHERE industry = 'Administrative and Support Services'
+
+UPDATE [2020rws] SET industry = 'Professional&IT'
+WHERE industry = 'Professional, Scientific and Technical Services'
+
+--- Updating Column 'CompanySize'
+
+SELECT DISTINCT CompanySize FROM [2020rws]
+
+UPDATE [2020rws] SET CompanySize = '200+'
+WHERE CompanySize = 'More than 200'
+
+UPDATE [2020rws] SET CompanySize = 'Under 200'
+WHERE CompanySize = 'Between 20 and 199'
+
+UPDATE [2020rws] SET CompanySize = 'Under 20'
+WHERE CompanySize = 'Between 5 and 19'
+
+UPDATE [2020rws] SET CompanySize = 'Under 20'
+WHERE CompanySize = 'Between 5 and 19'
+
+UPDATE [2020rws] SET CompanySize = 'Under 5'
+WHERE CompanySize = 'Between 1 and 4'
+
+UPDATE [2020rws] SET CompanySize = '1'
+WHERE CompanySize = 'I am the only employee'
+
+--- Rename the column name from 'CompanySize' to 'NumberOfEmployees'
+--- Adding a new column named 'CompanySize' depending on the number of employees the company has
+SELECT DISTINCT NumberOfEmployees FROM [2020rws]
+
+ALTER TABLE [2020rws]
+ADD CompanySize NVARCHAR(50)
+
+UPDATE [2020rws] SET CompanySize = 'Large'
+WHERE NumberOfEmployees = '200+'
+
+UPDATE [2020rws] SET CompanySize = 'SemiLarge'
+WHERE NumberOfEmployees = 'Under 200'
+
+UPDATE [2020rws] SET CompanySize = 'Medium'
+WHERE NumberOfEmployees = 'Under 20'
+
+UPDATE [2020rws] SET CompanySize = 'Small'
+WHERE NumberOfEmployees = 'Under 5'
+
+UPDATE [2020rws] SET CompanySize = 'Self'
+WHERE NumberOfEmployees = '1'
+
+SELECT CompanySize 
+FROM [2020rws]
+
+SELECT * FROM [2020rws]
+--- Changing value of YearsAtCureentJob
+
+select distinct FamilyDetail
+from [2020rws]
+
+UPDATE [2020rws] SET FamilyDetail = 'coupleNoChildren'
+where FamilyDetail = 'Couple with no dependent children'
+
+UPDATE [2020rws] SET FamilyDetail = 'multipleFamily'
+where FamilyDetail = 'Multiple family household'
+
+UPDATE [2020rws] SET FamilyDetail = 'Group'
+where FamilyDetail = 'Group household'
+
+UPDATE [2020rws] SET FamilyDetail = 'coupleWithKids'
+where FamilyDetail = 'Couple with dependent children'
+
+UPDATE [2020rws] SET FamilyDetail = 'oneParentWithKids'
+where FamilyDetail = 'One  parent family with dependent children'
+
+UPDATE [2020rws] SET FamilyDetail = 'otherOneFamily'
+where FamilyDetail = 'Other one family household'
+
+UPDATE [2020rws] SET FamilyDetail = 'group'
+where FamilyDetail = 'Group'
+
+UPDATE [2020rws] SET FamilyDetail = 'single'
+where FamilyDetail = 'Single person'
+
+
+select * from
+[2020rws]
+
+select distinct RwLastYear
+from [2020rws]
+
+----- Changing Necessary value for the column RwLastYear(How much Remote work employee did last year)
+UPDATE [2020rws] SET RwLastYear = '0'
+where RwLastYear = 'Rarely or never'
+
+UPDATE [2020rws] SET RwLastYear = '0.5'
+where RwLastYear = '50% - I spent about half of my time remote working'
+
+UPDATE [2020rws] SET RwLastYear = '1.0'
+where RwLastYear = '100% - I spent all of my time remote working'
+
+UPDATE [2020rws] SET RwLastYear = '0.09'
+where RwLastYear = 'Less than 10% of my time'
+
+----- Converting RwLastYear into percentage(%)
+
+ALTER TABLE dbo.[2020rws]
+ALTER COLUMN RwLastYear float;
+
+update [2020rws]
+set RwLastYear = RwLastYear * 100
+
+----- Changing the name of column RwLastYear to RwLastYear(%)
+
+
+select * from [2020rws]
+
+
+select distinct EasyToCollabrateWithColleagueOnRwLast3Month
+from [2020rws] 
+
+----- Updating column value 
+UPDATE [2020rws] 
+SET CompanyEncourageRwLastYear = 
+  CASE 
+    WHEN CompanyEncourageRwLastYear = 'NA' THEN '0'
+    WHEN CompanyEncourageRwLastYear = 'Strongly agree' THEN '1'
+    WHEN CompanyEncourageRwLastYear = 'Somewhat agree' THEN '2'
+    WHEN CompanyEncourageRwLastYear = 'Neither agree nor disagree' THEN '3'
+	WHEN CompanyEncourageRwLastYear = 'Somewhat disagree' THEN '4'
+	WHEN CompanyEncourageRwLastYear = 'Strongly disagree' THEN '5'
+  END
+WHERE CompanyEncourageRwLastYear IN ('NA', 'Strongly agree', 'Somewhat agree','Neither agree nor disagree','Somewhat disagree','Strongly disagree');
+
+
+----- Updating Column Value
+
+UPDATE [2020rws] 
+SET [Compny'sPreparenessForRwLastYear] = 
+  CASE 
+    WHEN [Compny'sPreparenessForRwLastYear] = 'NA' THEN '0'
+    WHEN [Compny'sPreparenessForRwLastYear]= 'Strongly agree' THEN '1'
+    WHEN [Compny'sPreparenessForRwLastYear] = 'Somewhat agree' THEN '2'
+    WHEN [Compny'sPreparenessForRwLastYear] = 'Neither agree nor disagree' THEN '3'
+	WHEN [Compny'sPreparenessForRwLastYear] = 'Somewhat disagree' THEN '4'
+	WHEN [Compny'sPreparenessForRwLastYear] = 'Strongly disagree' THEN '5'
+  END
+
+WHERE [Compny'sPreparenessForRwLastYear] IN ('NA', 'Strongly agree', 'Somewhat agree','Neither agree nor disagree','Somewhat disagree','Strongly disagree');
+
+
+----- Updating Multiple columns at a same time 
+
+UPDATE [2020rws] 
+SET 
+  [CommonForOtherWorkersForRwLastYear] = 
+    CASE 
+      WHEN [CommonForOtherWorkersForRwLastYear] = 'NA' THEN '0'
+      WHEN [CommonForOtherWorkersForRwLastYear] = 'Strongly agree' THEN '1'
+      WHEN [CommonForOtherWorkersForRwLastYear] = 'Somewhat agree' THEN '2'
+      WHEN [CommonForOtherWorkersForRwLastYear] = 'Neither agree nor disagree' THEN '3'
+      WHEN [CommonForOtherWorkersForRwLastYear] = 'Somewhat disagree' THEN '4'
+      WHEN [CommonForOtherWorkersForRwLastYear] = 'Strongly disagree' THEN '5'
+    END,
+  
+  [EasyToGetPermissionForRwLastYear] = 
+    CASE 
+      WHEN [EasyToGetPermissionForRwLastYear] = 'NA' THEN '0'
+      WHEN [EasyToGetPermissionForRwLastYear] = 'Strongly agree' THEN '1'
+      WHEN [EasyToGetPermissionForRwLastYear] = 'Somewhat agree' THEN '2'
+      WHEN [EasyToGetPermissionForRwLastYear] = 'Neither agree nor disagree' THEN '3'
+      WHEN [EasyToGetPermissionForRwLastYear] = 'Somewhat disagree' THEN '4'
+      WHEN [EasyToGetPermissionForRwLastYear] = 'Strongly disagree' THEN '5'
+    END,
+
+	  [EasyToCollabrateWithColleagueOnRwLastYear] = 
+    CASE 
+      WHEN [EasyToCollabrateWithColleagueOnRwLastYear] = 'NA' THEN '0'
+      WHEN [EasyToCollabrateWithColleagueOnRwLastYear] = 'Strongly agree' THEN '1'
+      WHEN [EasyToCollabrateWithColleagueOnRwLastYear] = 'Somewhat agree' THEN '2'
+      WHEN [EasyToCollabrateWithColleagueOnRwLastYear] = 'Neither agree nor disagree' THEN '3'
+      WHEN [EasyToCollabrateWithColleagueOnRwLastYear] = 'Somewhat disagree' THEN '4'
+      WHEN [EasyToCollabrateWithColleagueOnRwLastYear] = 'Strongly disagree' THEN '5'
+    END,
+
+  [WouldRecommendRwLastYear] = 
+    CASE 
+      WHEN [WouldRecommendRwLastYear] = 'NA' THEN '0'
+      WHEN [WouldRecommendRwLastYear] = 'Strongly agree' THEN '1'
+      WHEN [WouldRecommendRwLastYear] = 'Somewhat agree' THEN '2'
+      WHEN [WouldRecommendRwLastYear] = 'Neither agree nor disagree' THEN '3'
+      WHEN [WouldRecommendRwLastYear] = 'Somewhat disagree' THEN '4'
+      WHEN [WouldRecommendRwLastYear] = 'Strongly disagree' THEN '5'
+    END
+WHERE 
+  [CommonForOtherWorkersForRwLastYear] IN ('NA', 'Strongly agree', 'Somewhat agree', 'Neither agree nor disagree', 'Somewhat disagree', 'Strongly disagree')
+  OR [EasyToGetPermissionForRwLastYear] IN ('NA', 'Strongly agree', 'Somewhat agree', 'Neither agree nor disagree', 'Somewhat disagree', 'Strongly disagree')
+  OR[EasyToCollabrateWithColleagueOnRwLastYear] IN('NA', 'Strongly agree', 'Somewhat agree', 'Neither agree nor disagree', 'Somewhat disagree', 'Strongly disagree')
+  OR [WouldRecommendRwLastYear] IN ('NA', 'Strongly agree', 'Somewhat agree', 'Neither agree nor disagree', 'Somewhat disagree', 'Strongly disagree');
+
+
+
+----- Updating a columnPrefererwdRwLasdtYear and RwLast3Month
+select PreferredRwLastYear,RwLast3Month
+from [2020rws]
+
+select distinct PreferredRwLastYear
+from [2020rws]
+
+ALTER TABLE dbo.[2020rws]
+ALTER COLUMN  PreferredRwLastYear float;
+
+update [2020rws]
+set PreferredRwLastYear= PreferredRwLastYear * 100
+
+ALTER TABLE dbo.[2020rws]
+ALTER COLUMN  RwLast3Month float;
+
+update [2020rws]
+set RwLast3Month = RwLast3Month * 100
+---Converting Null value to 0 
+UPDATE [2020rws]
+SET PreferredRwLastYear = 0, RwLast3Month = 0
+WHERE PreferredRwLastYear IS NULL OR RwLast3Month IS NULL;
+
+
+
+select *
+from [2020rws]
+
+
+------ Updating multiple columns at a time 
+UPDATE [2020rws]
+SET 
+  [CompanyEncourageRwLast3Month] = 
+    CASE 
+      WHEN [CompanyEncourageRwLast3Month] = 'NA' THEN '0'
+      WHEN [CompanyEncourageRwLast3Month] = 'Strongly agree' THEN '1'
+      WHEN [CompanyEncourageRwLast3Month] = 'Somewhat agree' THEN '2'
+      WHEN [CompanyEncourageRwLast3Month] = 'Neither agree nor disagree' THEN '3'
+      WHEN [CompanyEncourageRwLast3Month] = 'Somewhat disagree' THEN '4'
+      WHEN [CompanyEncourageRwLast3Month] = 'Strongly disagree' THEN '5'
+    END,
+
+  [Company's PreparenessForRwLast3Month] = 
+    CASE 
+      WHEN [Company's PreparenessForRwLast3Month] = 'NA' THEN '0'
+      WHEN [Company's PreparenessForRwLast3Month] = 'Strongly agree' THEN '1'
+      WHEN [Company's PreparenessForRwLast3Month] = 'Somewhat agree' THEN '2'
+      WHEN [Company's PreparenessForRwLast3Month] = 'Neither agree nor disagree' THEN '3'
+      WHEN [Company's PreparenessForRwLast3Month] = 'Somewhat disagree' THEN '4'
+      WHEN [Company's PreparenessForRwLast3Month] = 'Strongly disagree' THEN '5'
+    END,
+
+  [CommonForOtherWorkersForRwLast3Month] = 
+    CASE 
+      WHEN [CommonForOtherWorkersForRwLast3Month] = 'NA' THEN '0'
+      WHEN [CommonForOtherWorkersForRwLast3Month] = 'Strongly agree' THEN '1'
+      WHEN [CommonForOtherWorkersForRwLast3Month] = 'Somewhat agree' THEN '2'
+      WHEN [CommonForOtherWorkersForRwLast3Month] = 'Neither agree nor disagree' THEN '3'
+      WHEN [CommonForOtherWorkersForRwLast3Month] = 'Somewhat disagree' THEN '4'
+      WHEN [CommonForOtherWorkersForRwLast3Month] = 'Strongly disagree' THEN '5'
+    END,
+
+  [EasyToGetPermissionForRwLast3Month] = 
+    CASE 
+      WHEN [EasyToGetPermissionForRwLast3Month] = 'NA' THEN '0'
+      WHEN [EasyToGetPermissionForRwLast3Month] = 'Strongly agree' THEN '1'
+      WHEN [EasyToGetPermissionForRwLast3Month] = 'Somewhat agree' THEN '2'
+      WHEN [EasyToGetPermissionForRwLast3Month] = 'Neither agree nor disagree' THEN '3'
+      WHEN [EasyToGetPermissionForRwLast3Month] = 'Somewhat disagree' THEN '4'
+      WHEN [EasyToGetPermissionForRwLast3Month] = 'Strongly disagree' THEN '5'
+    END,
+
+  [EasyToCollabrateWithColleagueOnRwLast3Month] = 
+    CASE 
+      WHEN [EasyToCollabrateWithColleagueOnRwLast3Month] = 'NA' THEN '0'
+      WHEN [EasyToCollabrateWithColleagueOnRwLast3Month] = 'Strongly agree' THEN '1'
+      WHEN [EasyToCollabrateWithColleagueOnRwLast3Month] = 'Somewhat agree' THEN '2'
+      WHEN [EasyToCollabrateWithColleagueOnRwLast3Month] = 'Neither agree nor disagree' THEN '3'
+      WHEN [EasyToCollabrateWithColleagueOnRwLast3Month] = 'Somewhat disagree' THEN '4'
+      WHEN [EasyToCollabrateWithColleagueOnRwLast3Month] = 'Strongly disagree' THEN '5'
+    END,
+
+  [WouldRecommendRwLast3Month] = 
+    CASE 
+      WHEN [WouldRecommendRwLast3Month] = 'NA' THEN '0'
+      WHEN [WouldRecommendRwLast3Month] = 'Strongly agree' THEN '1'
+      WHEN [WouldRecommendRwLast3Month] = 'Somewhat agree' THEN '2'
+      WHEN [WouldRecommendRwLast3Month] = 'Neither agree nor disagree' THEN '3'
+      WHEN [WouldRecommendRwLast3Month] = 'Somewhat disagree' THEN '4'
+      WHEN [WouldRecommendRwLast3Month] = 'Strongly disagree' THEN '5'
+    END
+WHERE 
+  [CompanyEncourageRwLast3Month] IN ('NA', 'Strongly agree', 'Somewhat agree', 'Neither agree nor disagree', 'Somewhat disagree', 'Strongly disagree')
+  OR [Company's PreparenessForRwLast3Month] IN ('NA', 'Strongly agree', 'Somewhat agree', 'Neither agree nor disagree', 'Somewhat disagree', 'Strongly disagree')
+  OR[CommonForOtherWorkersForRwLast3Month] IN('NA', 'Strongly agree', 'Somewhat agree', 'Neither agree nor disagree', 'Somewhat disagree', 'Strongly disagree')
+  OR [EasyToGetPermissionForRwLast3Month] IN ('NA', 'Strongly agree', 'Somewhat agree', 'Neither agree nor disagree', 'Somewhat disagree', 'Strongly disagree')
+  OR [EasyToCollabrateWithColleagueOnRwLast3Month] IN ('NA', 'Strongly agree', 'Somewhat agree', 'Neither agree nor disagree', 'Somewhat disagree', 'Strongly disagree')
+  OR [WouldRecommendRwLast3Month] IN ('NA', 'Strongly agree', 'Somewhat agree', 'Neither agree nor disagree', 'Somewhat disagree', 'Strongly disagree');
+
+
+  select * from [2020rws]
+  select distinct PreferredRwLast3Month
+  from [2020rws]
+
+  ----- Changing Necessary value for the column PreferredRwLast3Month (How much Remote work employee wantd to work last 3 month )
+UPDATE [2020rws] SET PreferredRwLast3Month = '0'
+where PreferredRwLast3Month = 'I would not have preferred to work remotely '
+
+UPDATE [2020rws] SET PreferredRwLast3Month = '0.5'
+where PreferredRwLast3Month = '50% - About half of my time'
+
+UPDATE [2020rws] SET PreferredRwLast3Month = '1.0'
+where PreferredRwLast3Month = '100% - All of my time'
+
+UPDATE [2020rws] SET PreferredRwLast3Month = '0.09'
+where PreferredRwLast3Month = 'Less than 10% of my time'
+----- Converting RwLast3Month into percentage(%)
+
+ALTER TABLE dbo.[2020rws]
+ALTER COLUMN PreferredRwLast3Month float;
+
+update [2020rws]
+set PreferredRwLast3Month = PreferredRwLast3Month * 100
+
+----- Converting AfterCovidPreferredRw
+select * from [2020rws]
+
+select distinct AfterCovidPreferredRw
+from [2020rws]
+
+ALTER TABLE dbo.[2020rws]
+ALTER COLUMN AfterCovidPreferredRw float;
+
+update [2020rws]
+set AfterCovidPreferredRw = AfterCovidPreferredRw * 100
+
+select distinct AfterCovidEmployerWillEncourageRw
+from [2020rws]
+select distinct AfterCovidWouldYouHaveMoreChoicesForRw
+from [2020rws]
+select distinct AfterCovidEmployerWillMakeChangesToSupportRw
+from [2020rws]
+
+----- Changing Column value in necessary columns 
+UPDATE [2020rws]
+SET 
+  [AfterCovidEmployerWillEncourageRw] = 
+    CASE 
+      WHEN [AfterCovidEmployerWillEncourageRw] = 'NA' THEN '0'
+      WHEN [AfterCovidEmployerWillEncourageRw] = 'Strongly agree' THEN '1'
+      WHEN [AfterCovidEmployerWillEncourageRw] = 'Somewhat agree' THEN '2'
+      WHEN [AfterCovidEmployerWillEncourageRw] = 'Neither agree nor disagree' THEN '3'
+      WHEN [AfterCovidEmployerWillEncourageRw] = 'Somewhat disagree' THEN '4'
+      WHEN [AfterCovidEmployerWillEncourageRw] = 'Strongly disagree' THEN '5'
+    END,
+
+  [AfterCovidWouldYouHaveMoreChoicesForRw] = 
+    CASE 
+      WHEN [AfterCovidWouldYouHaveMoreChoicesForRw] = 'NA' THEN '0'
+      WHEN [AfterCovidWouldYouHaveMoreChoicesForRw] = 'Strongly agree' THEN '1'
+      WHEN [AfterCovidWouldYouHaveMoreChoicesForRw] = 'Somewhat agree' THEN '2'
+      WHEN [AfterCovidWouldYouHaveMoreChoicesForRw] = 'Neither agree nor disagree' THEN '3'
+      WHEN [AfterCovidWouldYouHaveMoreChoicesForRw] = 'Somewhat disagree' THEN '4'
+      WHEN [AfterCovidWouldYouHaveMoreChoicesForRw] = 'Strongly disagree' THEN '5'
+    END,
+
+  [AfterCovidEmployerWillMakeChangesToSupportRw] = 
+    CASE 
+      WHEN [AfterCovidEmployerWillMakeChangesToSupportRw] = 'NA' THEN '0'
+      WHEN [AfterCovidEmployerWillMakeChangesToSupportRw] = 'Strongly agree' THEN '1'
+      WHEN [AfterCovidEmployerWillMakeChangesToSupportRw] = 'Somewhat agree' THEN '2'
+      WHEN [AfterCovidEmployerWillMakeChangesToSupportRw] = 'Neither agree nor disagree' THEN '3'
+      WHEN [AfterCovidEmployerWillMakeChangesToSupportRw] = 'Somewhat disagree' THEN '4'
+      WHEN [AfterCovidEmployerWillMakeChangesToSupportRw] = 'Strongly disagree' THEN '5'
+    END
+WHERE 
+  [AfterCovidEmployerWillEncourageRw] IN ('NA', 'Strongly agree', 'Somewhat agree', 'Neither agree nor disagree', 'Somewhat disagree', 'Strongly disagree')
+  OR [AfterCovidWouldYouHaveMoreChoicesForRw] IN ('NA', 'Strongly agree', 'Somewhat agree', 'Neither agree nor disagree', 'Somewhat disagree', 'Strongly disagree')
+  OR [AfterCovidEmployerWillMakeChangesToSupportRw] IN ('NA', 'Strongly agree', 'Somewhat agree', 'Neither agree nor disagree', 'Somewhat disagree', 'Strongly disagree');
+
+  select *
+  from [2020rws]
+  ----- Updating Column value: extracting percentage value from a senetence 
+UPDATE [2020rws] SET ProductivityWhenRw = 'Neutral'
+where ProductivityWhenRw = 'My productivity is about same when I work remotely'
+
+ SELECT ProductivityWhenRw,
+	CASE
+		WHEN CHARINDEX('%', ProductivityWhenRw) > 0 THEN
+			CAST(SUBSTRING(ProductivityWhenRw, CHARINDEX('%', ProductivityWhenRw) - 2, 9) AS nvarchar)
+			ELSE ProductivityWhenRw
+		END AS Percentage
+FROM [2020rws];
+----Updating it 
+UPDATE [2020rws]
+SET ProductivityWhenRw = 
+	CASE
+		WHEN CHARINDEX('%', ProductivityWhenRw) > 0 THEN
+			CAST(SUBSTRING(ProductivityWhenRw, CHARINDEX('%', ProductivityWhenRw) - 2, 9) AS nvarchar)
+		ELSE ProductivityWhenRw
+	END;
+---- Replaceing more into + and less into -
+
+UPDATE [2020rws]
+SET ProductivityWhenRw =
+    CASE
+        WHEN CHARINDEX('% more', ProductivityWhenRw) > 0 THEN
+            '+' + SUBSTRING(ProductivityWhenRw, 1, CHARINDEX('%', ProductivityWhenRw) - 1) + '%'
+        WHEN CHARINDEX('% less', ProductivityWhenRw) > 0 THEN
+            '-' + SUBSTRING(ProductivityWhenRw, 1, CHARINDEX('%', ProductivityWhenRw) - 1) + '%'
+        ELSE
+            ProductivityWhenRw
+    END;
+
+
+
+	select *
+	from [2020rws]
+
+-- Purpose: Data Processing - Remove Characters After First Opening Parenthesis
+-- Description: The following SQL script processes and updates the values in columns [Barrier 1] to [Barrier 20].
+-- Example: Original value "IT Equipment(mouse,keyboard)" is updated to "IT Equipment" by removing content after the first "(".
+
+-- Dynamic SQL for Processing
+-- We iterate through columns [Barrier 1] to [Barrier 20], checking for the presence of an opening parenthesis "(".
+-- If found, we extract the substring up to the first "(", otherwise, we retain the original value.
+
+-- Initialize variables
+
+--------------------------------------Note: Run this query carefully it will update many records at a time
+DECLARE @i INT = 1
+DECLARE @sql NVARCHAR(MAX)
+
+WHILE @i <= 20
+BEGIN
+    -- Construct dynamic SQL to update Barrier columns
+    SET @sql = '
+    UPDATE [2020rws]
+	SET [Barrier ' + CAST(@i AS NVARCHAR(2)) + '] =
+        CASE
+            WHEN CHARINDEX(''('', [Barrier ' + CAST(@i AS NVARCHAR(2)) + ']) > 0 THEN
+                -- Extract data up to opening parenthesis
+                SUBSTRING([Barrier ' + CAST(@i AS NVARCHAR(2)) + '], 1, CHARINDEX(''('', [Barrier ' + CAST(@i AS NVARCHAR(2)) + ']) - 1)
+            ELSE
+                -- Use the original data
+                [Barrier ' + CAST(@i AS NVARCHAR(2)) + ']
+        END '
+
+    -- Execute the dynamic SQL to update Barrier columns
+    EXEC sp_executesql @sql
+
+    -- Move to the next Barrier column
+    SET @i = @i + 1
+END
+
+-- Select data from the [2020rws] table after updating Barrier columns
+SELECT * FROM [2020rws]
