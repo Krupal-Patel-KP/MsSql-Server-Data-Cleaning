@@ -1,3 +1,8 @@
+/*
+Data Standardization and Transformation Project
+Skills Demonstrated: SQL Queries, Dynamic SQL, Database Schema Management, Data Cleaning and Standardization, Conditional Logic, Iterative Data Processing
+*/
+
 -- Select all columns from the table [2020rws]
 SELECT *
 FROM dbo.[2020rws]
