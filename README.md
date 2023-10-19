@@ -43,8 +43,6 @@ In this above projects, my primary focus was to clean and transform raw data to 
 
     - **Data Validation**: Implemented validation checks to ensure the accuracy and consistency of data.
 
-    - **Error Handling**: Utilized error handling techniques to manage and log errors during data cleaning processes.
-
     - **Batch Processing**: Performed batch processing of data to efficiently clean and update large datasets.
 
 This project has successfully transformed raw data into a clean, structured form that is now ready for data visualization and analysis.
