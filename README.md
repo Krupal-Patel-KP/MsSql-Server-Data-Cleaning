@@ -1,6 +1,6 @@
-# Data Cleaning Project Overview
+# Data Cleaning Projects Overview
 
-In this project, my primary focus was to clean and transform raw data to prepare it for data visualization and analysis. The following key highlights summarize the project's main objectives and the SQL skills and operations I employed:
+In this projects, my primary focus was to clean and transform raw data to prepare it for data visualization and analysis. The following key highlights summarize the project's main objectives and the SQL skills and operations I employed:
 
 ## Objective
 
