@@ -520,6 +520,169 @@ BEGIN
     -- Move to the next Barrier column
     SET @i = @i + 1
 END
-
 -- Select data from the [2020rws] table after updating Barrier columns
 SELECT * FROM [2020rws]
+
+
+-- Merging the columns barriers 1 to barrier 20
+-- Selecting distinct barriers and counting the total responses for each barrier
+select * from [2020rws]
+
+
+SELECT Barrier, SUM(TotalResponse) AS TotalResponse
+FROM (
+SELECT DISTINCT [Barrier 1] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 1]
+  UNION
+SELECT DISTINCT [Barrier 2] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 2]
+  UNION
+SELECT DISTINCT [Barrier 3] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 3]
+  UNION
+SELECT DISTINCT [Barrier 4] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 4]
+  UNION
+SELECT DISTINCT [Barrier 5] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 5]
+  UNION
+SELECT DISTINCT [Barrier 6] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 6]
+  UNION
+SELECT DISTINCT [Barrier 7] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 7]
+  UNION
+SELECT DISTINCT [Barrier 8] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 8]
+  UNION
+SELECT DISTINCT [Barrier 9] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 9]
+  UNION
+SELECT DISTINCT [Barrier 10] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 10]
+  UNION
+SELECT DISTINCT [Barrier 11] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 11]
+  UNION
+SELECT DISTINCT [Barrier 12] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 12]
+  UNION
+SELECT DISTINCT [Barrier 13] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 13]
+  UNION
+SELECT DISTINCT [Barrier 14] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 14]
+  UNION
+SELECT DISTINCT [Barrier 15] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 15]
+  UNION
+SELECT DISTINCT [Barrier 16] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 16]
+  UNION
+SELECT DISTINCT [Barrier 17] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 17]
+  UNION
+SELECT DISTINCT [Barrier 18] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 18]
+  UNION
+SELECT DISTINCT [Barrier 19] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 19]
+  UNION
+SELECT DISTINCT [Barrier 20] AS Barrier, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Barrier 20]
+
+) AS Subquery
+GROUP BY Barrier
+ORDER BY SUM(TotalResponse) DESC;
+
+-- Merging the columns best aspects
+-- Selecting distinct best aspects and counting the total responses for each best aspect
+
+SELECT BestAspects, SUM(TotalResponse) AS TotalResponse
+FROM (
+SELECT DISTINCT [Best Aspect 1 ] AS BestAspects, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Best Aspect 1 ]
+  UNION
+SELECT DISTINCT [Best Aspect 2] AS BestAspects, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Best Aspect 2] 
+  UNION
+SELECT DISTINCT [Best Aspect 3] AS BestAspects, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Best Aspect 3]
+  UNION
+SELECT DISTINCT [Best Aspect 4] AS BestAspects, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Best Aspect 4] 
+  UNION
+SELECT DISTINCT [Best Aspect 5] AS BestAspects, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Best Aspect 5] 
+  UNION
+SELECT DISTINCT [Best Aspect 6] AS BestAspects, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Best Aspect 6]
+) AS Subquery
+GROUP BY BestAspects
+ORDER BY SUM(TotalResponse) DESC;
+
+-- Merging the columns Worst Aspect
+-- Selecting distinct worst aspects and counting the total responses for each worst aspect
+SELECT WorstAspects, SUM(TotalResponse) AS TotalResponse
+FROM (
+SELECT DISTINCT [Worst Aspect 1] AS WorstAspects, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Worst Aspect 1]
+  UNION
+SELECT DISTINCT [Worst Aspect 2] AS WorstAspects, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Worst Aspect 2]
+  UNION
+SELECT DISTINCT [Worst Aspect 3] AS WorstAspects, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Worst Aspect 3]
+  UNION
+SELECT DISTINCT [Worst Aspect 4] AS WorstAspects, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Worst Aspect 4]
+  UNION
+SELECT DISTINCT [Worst Aspect 5] AS WorstAspects, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Worst Aspect 5]
+  UNION
+SELECT DISTINCT [Worst Aspect 6] AS WorstAspects, COUNT(ResponseID) AS TotalResponse
+FROM [2020rws]
+GROUP BY [Worst Aspect 6]
+) AS Subquery
+GROUP BY WorstAspects
+ORDER BY SUM(TotalResponse) DESC;
+
+
+select SUM(ResponseID)
+from [2020rws]
+
+
+
+
+
